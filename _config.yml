@@ -1,11 +1,11 @@
 # Site settings
-title:          DonguriJun.log
+title:          DJ.Log
 description:    ""
 url:            https://dongjun6343.github.io/
 
 # Author
 author:
-  name:         DonguriJun
+  name:         DJ
   email:        dongjun6343@gmail.com
   url:          https://dongjun6343.github.io/
 
@@ -29,7 +29,7 @@ paginate:       5
 
 # Related posts settings
 related_posts_section:
-  max_count:        5
+  max_count:        10
   min_common_tags:  2
 
 # Links to social media
