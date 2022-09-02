@@ -4,7 +4,7 @@ description:    ""
 url:            https://dongjun6343.github.io/
 
 # Author
-author:         DongJun
+author:
   name:         DongJun
   email:        dongjun6343@gmail.com
   url:          https://dongjun6343.github.io/
@@ -25,7 +25,7 @@ plugins:
 
 # Permalinks
 permalink:      /:year-:month-:day/:title
-paginate:       10
+paginate:       5
 
 # Related posts settings
 related_posts_section:
