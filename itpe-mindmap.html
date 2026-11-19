@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <meta name="theme-color" content="#f2f5fa">
-<title>정보관리기술사 마인드맵 · 21개 토픽</title>
+<title>ITPE 마인드맵</title>
 <style>
 :root{
   --bg:#f2f5fa; --ink:#0f172a; --muted:#64748b; --line:#e4e9f2; --accent:#2563eb;
@@ -235,7 +235,7 @@ pre.ascii{margin:0;padding:12px;background:#f8fafd;border:1px solid var(--line);
   <div class="brand">
     <div class="logo">🗺️</div>
     <div>
-      <h1>정보관리기술사 마인드맵</h1>
+      <h1>ITPE 마인드맵</h1>
       <p id="cnt"><b>21</b>개 토픽 · 6개 분야 · 점선은 연관 토픽</p>
     </div>
   </div>
@@ -428,7 +428,8 @@ function render(){
   var rEl = mkNode('root', px(rg), py(rg), rg.w, rg.h, null);
   rEl.setAttribute('data-node','root');
   rEl.setAttribute('data-kind','root');
-  rEl.innerHTML = '<span class="n-title">정보관리기술사</span><span class="n-sub">21개 토픽 · 6개 분야</span>';
+  rEl.innerHTML = '<span class="n-title">ITPE</span><span class="n-sub">' + TOPICS.length + '개 토픽 · ' + CATS.length + '개 분야</span>';
+  document.title = 'ITPE 마인드맵 · ' + TOPICS.length + '개 토픽';
   nodesEl.appendChild(rEl);
 
   // hubs + leaves
