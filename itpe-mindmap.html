@@ -382,9 +382,14 @@ function leavesOf(catId){
 }
 var CHILD_GAPX = 54;
 function rootsOf(catId){
-  var out = [];
-  for (var i=0;i<TOPICS.length;i++){ if (TOPICS[i].cat===catId && !TOPICS[i].parent) out.push(TOPICS[i]); }
-  return out;
+  var parents = [], singles = [];
+  for (var i=0;i<TOPICS.length;i++){
+    if (TOPICS[i].cat===catId && !TOPICS[i].parent){
+      if (childrenOf(TOPICS[i].id).length > 0) parents.push(TOPICS[i]);
+      else singles.push(TOPICS[i]);
+    }
+  }
+  return parents.concat(singles);
 }
 function childrenOf(tid){
   var out = [];
