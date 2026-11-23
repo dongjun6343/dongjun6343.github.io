@@ -422,7 +422,7 @@ TOPICS.forEach(function(t){
 CATS.forEach(function(c){
   c.subs.forEach(function(s){
     var o = {sid:s.sid, n:s.n, cat:c, topics:[]};
-    SUB[s.sid] = o; SUBS.push(o);
+    SUB[s.sid] = o; SUBS.push(o); s.o = o;
     state.cats[c.id] = true;
   });
 });
