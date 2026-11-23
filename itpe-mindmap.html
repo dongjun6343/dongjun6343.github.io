@@ -37,6 +37,8 @@ button{font-family:inherit;cursor:pointer}
   border:1px solid #cfe0ff;background:#f2f7ff;color:#1d4ed8;font-size:11px;font-weight:800;
   letter-spacing:-.4px;white-space:nowrap;display:inline-flex;align-items:center;gap:3px}
 .gbtn:active{background:#e3eeff}
+.gbtn.gb{border-color:#bae6fd;background:#f0f9ff;color:#0369a1}
+.gbtn.gb:active{background:#e0f2fe}
 .gbtn.p3{border-color:#ddd6fe;background:#f5f3ff;color:#6d28d9}
 .gbtn.p3:active{background:#ede9fe}
 
@@ -333,8 +335,9 @@ body.sheet-open #selbar{display:none}
       <p id="cnt"><b>110</b>개 토픽 · 8개 분야</p>
     </div>
     <div class="gbtns">
-      <button class="gbtn" id="gOpen" aria-label="관점 가이드 열기">🧭 관점 가이드</button>
-      <button class="gbtn p3" id="p3Open" aria-label="1교시형 3단락 정리 열기">📝 3단락 정리</button>
+      <button class="gbtn" id="gOpen" aria-label="관점 가이드 열기">🧭 관점</button>
+      <button class="gbtn gb" id="gbOpen" aria-label="구분 가이드 열기">🏷️ 구분</button>
+      <button class="gbtn p3" id="p3Open" aria-label="1교시형 3단락 정리 열기">📝 3단락</button>
     </div>
   </div>
   <div class="toolbar">
@@ -1339,6 +1342,31 @@ function guideHTML(){
   });
   return h;
 }
+function gubunHTML(){
+  return '<section><h3>만능 공통 구분자 10선 (두음: 개·목·핵·구 / 장·단·기·보 / 적·고)</h3>'
+    + '<div class="prose"><p>표 첫 열(<b>구분</b>)이 막힐 때 아래 10개 중 <b>4~5개</b>를 뽑아 쓰면 비교표·단일 특징표 모두 바로 완성된다.</p></div>'
+    + '<div class="tblwrap"><table><thead><tr><th>구분 (공통 10종)</th><th>비교표 (A vs B)</th><th>단일 특징 나열</th></tr></thead><tbody>'
+    + '<tr><td><b>1. 개념 · 정의</b></td><td>두 기술의 본질적 정의 차이</td><td>토픽의 한 줄 핵심 정의</td></tr>'
+    + '<tr><td><b>2. 목적 · 배경</b></td><td>각각 풀려는 문제 차이</td><td>등장 배경과 해결 과제</td></tr>'
+    + '<tr><td><b>3. 핵심 원리</b></td><td>동작 방식·메커니즘 차이</td><td>내부 처리 흐름·알고리즘</td></tr>'
+    + '<tr><td><b>4. 주요 구성요소</b></td><td>계층·컴포넌트 역할 차이</td><td>핵심 모듈·구성 요소</td></tr>'
+    + '<tr><td><b>5. 장점 · 기대효과</b></td><td>A의 강점 vs B의 강점</td><td>성능·비용·품질 이점</td></tr>'
+    + '<tr><td><b>6. 단점 · 한계점</b></td><td>각각의 약점·트레이드오프</td><td>제약사항·오버헤드·리스크</td></tr>'
+    + '<tr><td><b>7. 기술적 특징</b></td><td>프로토콜·표준·구현 차이</td><td>대표 표준·기술·수치/지표</td></tr>'
+    + '<tr><td><b>8. 보안 · 안정성</b></td><td>인증·암호화·장애 대응</td><td>보안 위협 방어·정합성·가용성</td></tr>'
+    + '<tr><td><b>9. 적용 대상 · 사례</b></td><td>언제 A, 언제 B를 쓰나</td><td>적합 도메인·실무 사례</td></tr>'
+    + '<tr><td><b>10. 고려사항 · 전망</b></td><td>결합 패턴·전환 방향</td><td>도입 전제조건·발전 방향</td></tr>'
+    + '</tbody></table></div></section>'
+    + '<section><h3>문제 유형별 추천 구분 세트 (4~5행)</h3>'
+    + '<div class="tblwrap"><table><thead><tr><th>문제 유형</th><th>추천 구분 (첫 열)</th></tr></thead><tbody>'
+    + '<tr><td><b>A vs B 비교형</b></td><td>개념 · 핵심원리 · 장단점 · 성능/비용 · 적용기준</td></tr>'
+    + '<tr><td><b>신기술·아키텍처</b></td><td>등장배경 · 핵심기술 · 구성요소 · 기대효과 · 고려사항</td></tr>'
+    + '<tr><td><b>보안·위협·인증</b></td><td>위협유형 · 공격원리 · 보안요구 · 대응기술 · 관리/제도</td></tr>'
+    + '<tr><td><b>거버넌스·법제도</b></td><td>추진배경 · 법/표준근거 · 조직/역할 · 프로세스 · 과제</td></tr>'
+    + '<tr><td><b>DB·성능·인덱스</b></td><td>구조/원리 · 처리방식 · 정합성/동시성 · 장단점 · 튜닝</td></tr>'
+    + '<tr><td><b>프로세스·PM</b></td><td>목적 · 입력(Input) · 활동/기법 · 산출물 · 관리지표(KPI)</td></tr>'
+    + '</tbody></table></div></section>';
+}
 function para3HTML(){
   return '<section><h3>1교시 3단락 마무리 공식 (두음: 고·활·기·대·발)</h3>'
     + '<div class="prose"><p>1교시(1페이지 22줄)는 <b>1단락(정의·배경) → 2단락(개념도·원리/비교) → 3단락(마무리)</b> 구조가 정석이다. 문제의 성격에 맞춰 아래 5가지 중 <b>가장 어울리는 1개 제목</b>을 골라 3~4줄로 마무리한다.</p></div></section>'
@@ -1371,6 +1399,18 @@ function openGuide(){
   requestAnimationFrame(function(){ gBody.scrollTop = 0; });
   hideHint();
 }
+function openGubun(){
+  gBadge.textContent = '표 앞열 치트시트';
+  gTitle.textContent = '구분 가이드 · 3단표 앞열 10선';
+  gBody.innerHTML = gubunHTML();
+  gPanel.style.setProperty('--c', '#0369a1');
+  gPanel.style.setProperty('--cbg', 'rgba(3,105,161,.075)');
+  gPanel.style.setProperty('--cbd', 'rgba(3,105,161,.30)');
+  if (guide.hidden){ guide.hidden = false; void gPanel.offsetHeight; }
+  guide.classList.add('open');
+  requestAnimationFrame(function(){ gBody.scrollTop = 0; });
+  hideHint();
+}
 function openPara3(){
   gBadge.textContent = '1교시 마무리 공식';
   gTitle.textContent = '1교시형 3단락 정리';
@@ -1388,6 +1428,7 @@ function closeGuide(){
   setTimeout(function(){ if (!guide.classList.contains('open')) guide.hidden = true; }, 300);
 }
 $('gOpen').addEventListener('click', openGuide);
+$('gbOpen').addEventListener('click', openGubun);
 $('p3Open').addEventListener('click', openPara3);
 $('gClose').addEventListener('click', closeGuide);
 $('guideBg').addEventListener('click', closeGuide);
