@@ -112,8 +112,8 @@ body.has-sel #edges .aedge:not(.on){opacity:.1}
 
 .node.cat{flex-direction:row;align-items:center;gap:6px;border-radius:14px;
   background:var(--cbg);border:2px solid var(--c);box-shadow:0 3px 11px rgba(15,23,42,.09);padding:0 8px}
-.node.cat .nm{flex:1;font-size:12.5px;font-weight:800;color:var(--c);letter-spacing:-.5px;line-height:1.2;
-  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;word-break:keep-all}
+.node.cat .nm{flex:1;min-width:0;font-size:12px;font-weight:800;color:var(--c);letter-spacing:-.5px;line-height:1.2;
+  max-height:2.4em;overflow:hidden;word-break:keep-all;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
 .node.cat .n-n{flex:0 0 auto;font-size:10.5px;font-weight:800;color:#fff;background:var(--c);border-radius:9px;
   min-width:19px;height:17px;padding:0 5px;display:flex;align-items:center;justify-content:center}
 .node.cat .tg{flex:0 0 auto;width:11px;text-align:center;font-size:12px;font-weight:900;color:var(--c);opacity:.75}
@@ -121,8 +121,8 @@ body.has-sel #edges .aedge:not(.on){opacity:.1}
 .node.sub{flex-direction:row;align-items:center;gap:5px;border-radius:12px;background:#fff;
   border:1.5px solid var(--cbd);padding:0 7px;box-shadow:0 2px 7px rgba(15,23,42,.05)}
 .node.sub.open{border-color:var(--c);background:var(--cbg)}
-.node.sub .nm{flex:1;font-size:11.5px;font-weight:800;color:#26334a;letter-spacing:-.4px;line-height:1.2;
-  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;word-break:keep-all}
+.node.sub .nm{flex:1;min-width:0;font-size:11.5px;font-weight:800;color:#26334a;letter-spacing:-.4px;line-height:1.22;
+  max-height:2.44em;overflow:hidden;word-break:keep-all;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
 .node.sub .n-n{flex:0 0 auto;font-size:9.5px;font-weight:800;color:var(--c);background:var(--cbg);
   border:1px solid var(--cbd);border-radius:8px;min-width:16px;height:15px;padding:0 4px;
   display:flex;align-items:center;justify-content:center}
@@ -485,8 +485,8 @@ function leafKids(t){
 /* ================================================================ layout */
 var PAD = 80;
 var ROOT_W = 176, ROOT_H = 70, ROOT_HALF = 88;
-var CAT_W = 138, CAT_H = 46;
-var SUB_W = 158, SUB_H = 48;
+var CAT_W = 152, CAT_H = 56;
+var SUB_W = 168, SUB_H = 56;
 var LEAF_W = 198, LEAF_H = 50;
 var G_ROOT = 52, G_CAT = 40, G_SUB = 32, G_CHILD = 28;
 var CAT_GAP = 46, SUB_GAP = 14, LEAF_GAP = 10;
@@ -677,7 +677,7 @@ function drawEdges(){
     if (!a) return;
     var isL = n.meta.side === 'L';
     var ax = pxx(a), bx = pxx(b);
-    var x1 = isL ? ax + a.w : ax;
+    var x1 = isL ? ax : ax + a.w;
     var y1 = pyy(a) + a.h/2;
     var x2 = isL ? bx + b.w : bx;
     var y2 = pyy(b) + b.h/2;
