@@ -32,10 +32,13 @@ button{font-family:inherit;cursor:pointer}
 .brand h1{font-size:15px;margin:0;font-weight:800;letter-spacing:-.5px;line-height:1.25}
 .brand p{margin:1px 0 0;font-size:11px;color:var(--muted);letter-spacing:-.2px}
 .brand p b{color:#2563eb;font-weight:700}
-.gbtn{margin-left:auto;flex:0 0 auto;height:28px;padding:0 10px;border-radius:14px;
-  border:1px solid #cfe0ff;background:#f2f7ff;color:#1d4ed8;font-size:11.5px;font-weight:800;
-  letter-spacing:-.4px;white-space:nowrap;display:inline-flex;align-items:center;gap:4px}
+.gbtns{margin-left:auto;display:flex;align-items:center;gap:5px;flex:0 0 auto}
+.gbtn{flex:0 0 auto;height:28px;padding:0 8px;border-radius:14px;
+  border:1px solid #cfe0ff;background:#f2f7ff;color:#1d4ed8;font-size:11px;font-weight:800;
+  letter-spacing:-.4px;white-space:nowrap;display:inline-flex;align-items:center;gap:3px}
 .gbtn:active{background:#e3eeff}
+.gbtn.p3{border-color:#ddd6fe;background:#f5f3ff;color:#6d28d9}
+.gbtn.p3:active{background:#ede9fe}
 
 .toolbar{display:flex;align-items:center;gap:8px;margin:0 0 7px}
 .seg{display:flex;background:#eef2f9;border:1px solid var(--line);border-radius:11px;padding:2px;flex:0 0 auto}
@@ -329,7 +332,10 @@ body.sheet-open #selbar{display:none}
       <h1>ITPE 마인드맵</h1>
       <p id="cnt"><b>110</b>개 토픽 · 8개 분야</p>
     </div>
-    <button class="gbtn" id="gOpen" aria-label="관점 가이드 열기">🧭 관점 가이드</button>
+    <div class="gbtns">
+      <button class="gbtn" id="gOpen" aria-label="관점 가이드 열기">🧭 관점 가이드</button>
+      <button class="gbtn p3" id="p3Open" aria-label="1교시형 3단락 정리 열기">📝 3단락 정리</button>
+    </div>
   </div>
   <div class="toolbar">
     <div class="seg" id="seg">
@@ -1322,7 +1328,7 @@ $('mMap').addEventListener('click', function(){
 });
 
 /* ================================================================ guide */
-var guide = $('guide'), gBody = $('gBody'), gPanel = $('guidePanel'), guideBuilt = false;
+var guide = $('guide'), gBody = $('gBody'), gPanel = $('guidePanel'), gBadge = $('gBadge'), gTitle = $('gTitle');
 
 function guideHTML(){
   var g = DATA.guide, h = '';
@@ -1333,11 +1339,45 @@ function guideHTML(){
   });
   return h;
 }
+function para3HTML(){
+  return '<section><h3>1교시 3단락 마무리 공식 (두음: 고·활·기·대·발)</h3>'
+    + '<div class="prose"><p>1교시(1페이지 22줄)는 <b>1단락(정의·배경) → 2단락(개념도·원리/비교) → 3단락(마무리)</b> 구조가 정석이다. 문제의 성격에 맞춰 아래 5가지 중 <b>가장 어울리는 1개 제목</b>을 골라 3~4줄로 마무리한다.</p></div></section>'
+    + '<section><h3>3단락 5대 유형 비교표</h3>'
+    + '<div class="tblwrap"><table><thead><tr><th>유형</th><th>언제 쓰나</th><th>핵심 키워드 템플릿</th></tr></thead><tbody>'
+    + '<tr><td><b>1. 고려사항</b></td><td>신기술 도입·아키텍처 전환·실무 적용형</td><td>성능·비용 트레이드오프, 기존 시스템 호환성, 보안·거버넌스, 조직 역량</td></tr>'
+    + '<tr><td><b>2. 활성화방안</b></td><td>정책·산업 확산·생태계 육성형</td><td>법·제도 정비, 표준화·상호운용성, 인력 양성·인프라, 공공 선도 사례</td></tr>'
+    + '<tr><td><b>3. 기대효과</b></td><td>기술 장점·비즈니스 가치 강조형</td><td><b>정량</b>(처리속도·비용·TCO 절감) / <b>정성</b>(품질·신뢰성·민첩성·경쟁력)</td></tr>'
+    + '<tr><td><b>4. 대응방안</b></td><td>보안 위협·장애·한계점 극복형</td><td><b>기술적</b>(암호화·탐지·이중화) · <b>관리적</b>(정책·감사·교육) · <b>법제도적</b>(규제 준수)</td></tr>'
+    + '<tr><td><b>5. 발전과제</b></td><td>최신 트렌드·차세대 로드맵형</td><td>AI·자동화 접목, 경량화·고성능화, 글로벌 표준 선도, 지속가능성(ESG)</td></tr>'
+    + '</tbody></table></div></section>'
+    + '<section><h3>항목별 바로 쓰는 답안 문구</h3>'
+    + '<div class="prose"><ul>'
+    + '<li><b>고려사항</b> — 도입 전 TCO·ROI 분석, 레거시 연동 및 마이그레이션, 보안·컴플라이언스 충족 여부 점검</li>'
+    + '<li><b>활성화방안</b> — 기술 표준화 및 가이드라인 수립, 규제 샌드박스·인센티브, 전문인력 양성 및 생태계 조성</li>'
+    + '<li><b>기대효과</b> — 정량적 효과(운영비용·응답시간 단축)와 정성적 효과(업무 생산성·서비스 신뢰도·의사결정 고도화)</li>'
+    + '<li><b>대응방안</b> — 단일 장애점(SPOF) 제거·보안 통제(기술), 거버넌스·모니터링 체계(관리), 개인정보·저작권 준수(제도)</li>'
+    + '<li><b>발전과제</b> — 생성형 AI·자율운영(AIOps) 융합, 국제 표준(ISO/IEC) 연계 고도화, 중장기 아키텍처 진화</li>'
+    + '</ul></div></section>';
+}
 function openGuide(){
-  if (!guideBuilt){ gBody.innerHTML = guideHTML(); guideBuilt = true; }
+  gBadge.textContent = '답안 3단 프레임';
+  gTitle.textContent = '관점 가이드 · 3단 관점 치트시트';
+  gBody.innerHTML = guideHTML();
   gPanel.style.setProperty('--c', '#2563eb');
   gPanel.style.setProperty('--cbg', 'rgba(37,99,235,.075)');
   gPanel.style.setProperty('--cbd', 'rgba(37,99,235,.30)');
+  if (guide.hidden){ guide.hidden = false; void gPanel.offsetHeight; }
+  guide.classList.add('open');
+  requestAnimationFrame(function(){ gBody.scrollTop = 0; });
+  hideHint();
+}
+function openPara3(){
+  gBadge.textContent = '1교시 마무리 공식';
+  gTitle.textContent = '1교시형 3단락 정리';
+  gBody.innerHTML = para3HTML();
+  gPanel.style.setProperty('--c', '#6d28d9');
+  gPanel.style.setProperty('--cbg', 'rgba(109,40,217,.075)');
+  gPanel.style.setProperty('--cbd', 'rgba(109,40,217,.30)');
   if (guide.hidden){ guide.hidden = false; void gPanel.offsetHeight; }
   guide.classList.add('open');
   requestAnimationFrame(function(){ gBody.scrollTop = 0; });
@@ -1348,6 +1388,7 @@ function closeGuide(){
   setTimeout(function(){ if (!guide.classList.contains('open')) guide.hidden = true; }, 300);
 }
 $('gOpen').addEventListener('click', openGuide);
+$('p3Open').addEventListener('click', openPara3);
 $('gClose').addEventListener('click', closeGuide);
 $('guideBg').addEventListener('click', closeGuide);
 window.addEventListener('keydown', function(e){
