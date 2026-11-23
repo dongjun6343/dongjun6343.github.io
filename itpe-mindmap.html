@@ -622,6 +622,7 @@ function labelHTML(n){
 }
 
 function isDim(n){
+  if (state.filter && n.meta.cat && n.meta.cat.id !== state.filter) return true;
   if (!qnorm()) return false;
   if (n.kind === 'cat') return !catHasMatch(n.meta.cat);
   if (n.kind === 'sub') return !subHasMatch(n.meta.sub);
@@ -832,8 +833,17 @@ function toggleSub(sid){
   if (state.subs[sid]){
     fitTo(['sub:'+sid].concat(s.topics.map(function(t){ return t.id; })));
   } else {
-    fitTo(['cat:'+s.cat.id].concat(s.cat.subs.map(function(x){ return 'sub:'+x.sid; })));
+    fitTo(branchKeys(s.cat, true));
   }
+}
+
+function branchKeys(c, withTopics){
+  var keys = ['cat:'+c.id];
+  c.subs.forEach(function(x){
+    keys.push('sub:'+x.sid);
+    if (withTopics) x.o.topics.forEach(function(t){ keys.push(t.id); });
+  });
+  return keys;
 }
 
 function toggleCat(cid){
@@ -843,7 +853,7 @@ function toggleCat(cid){
   if (state.filter && state.filter !== cid){ setFilter(cid); return; }
   if (state.cats[cid] === false) state.cats[cid] = true; else state.cats[cid] = false;
   relayout();
-  if (state.cats[cid]) fitTo(['cat:'+cid].concat(c.subs.map(function(x){ return 'sub:'+x.sid; })));
+  if (state.cats[cid]) fitTo(branchKeys(c, true));
   else fitTo(['cat:'+cid]);
 }
 
@@ -979,7 +989,7 @@ function setFilter(cat){
   if (cat){
     var c0 = null;
     for (var k=0;k<CATS.length;k++) if (CATS[k].id === cat) c0 = CATS[k];
-    if (c0) fitTo(['cat:'+cat].concat(c0.subs.map(function(x){ return 'sub:'+x.sid; })));
+    if (c0) fitTo(branchKeys(c0, true));
   } else {
     viewAll(true);
   }
