@@ -309,9 +309,14 @@ body.sheet-open #selbar{display:none}
 #selbar .sbtn{flex:none;border:0;border-radius:999px;background:#3b82f6;color:#fff;
   font-size:12.5px;font-weight:700;padding:7px 14px;cursor:pointer}
 #selbar .sbtn:active{background:#2563eb}
+@media (max-width:430px){
+  .leafrow .ts{max-width:40%;font-size:10.5px}
+  .trow{padding:8px 6px}
+}
 @media (max-width:360px){
   .seg button{font-size:11px;padding:0 7px}
   .mapbar button{font-size:10.5px;padding:0 6px}
+  .leafrow .ts{display:none}
 }
 </style>
 </head>
@@ -838,7 +843,7 @@ function toggleSub(sid){
 }
 
 function branchKeys(c, withTopics){
-  var keys = ['cat:'+c.id];
+  var keys = ['root', 'cat:'+c.id];
   c.subs.forEach(function(x){
     keys.push('sub:'+x.sid);
     if (withTopics) x.o.topics.forEach(function(t){ keys.push(t.id); });
@@ -850,7 +855,7 @@ function toggleCat(cid){
   var c = null;
   for (var i=0;i<CATS.length;i++) if (CATS[i].id === cid) c = CATS[i];
   if (!c) return;
-  if (state.filter && state.filter !== cid){ setFilter(cid); return; }
+  if (state.filter){ setFilter(state.filter === cid ? null : cid); return; }
   if (state.cats[cid] === false) state.cats[cid] = true; else state.cats[cid] = false;
   relayout();
   if (state.cats[cid]) fitTo(branchKeys(c, true));
