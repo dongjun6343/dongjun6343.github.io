@@ -303,6 +303,7 @@ pre.ascii{margin:0;padding:12px;background:#f8fafd;border:1px solid var(--line);
   background:rgba(15,23,42,.92);color:#fff;border-radius:999px;padding:7px 8px 7px 14px;
   box-shadow:0 8px 24px rgba(15,23,42,.28);backdrop-filter:blur(8px)}
 #selbar[hidden]{display:none}
+body.sheet-open #selbar{display:none}
 #selbar .sdot{width:8px;height:8px;border-radius:50%;flex:none}
 #selbar .stitle{font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 #selbar .sbtn{flex:none;border:0;border-radius:999px;background:#3b82f6;color:#fff;
@@ -476,7 +477,7 @@ function visParent(t){
   return p;
 }
 function leafRoots(s){
-  return s.topics.filter(function(t){ return !visParent(t); });
+  return s.topics.filter(function(t){ return matchTopic(t) && !visParent(t); });
 }
 function leafKids(t){
   return TOPICS.filter(function(c){ return c.parent === t.id && matchTopic(c); });
@@ -1263,12 +1264,14 @@ function openModal(id){
     sheet.hidden = false;
     void panel.offsetHeight;
   }
+  document.body.classList.add('sheet-open');
   sheet.classList.add('open');
   requestAnimationFrame(function(){ mBody.scrollTop = 0; });
   hideHint();
 }
 
 function closeModal(){
+  document.body.classList.remove('sheet-open');
   sheet.classList.remove('open');
   setTimeout(function(){
     if (!sheet.classList.contains('open')) sheet.hidden = true;
