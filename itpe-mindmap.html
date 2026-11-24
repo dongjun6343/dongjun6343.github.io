@@ -248,6 +248,17 @@ table.cmp td code{font-size:.85em;padding:1px 4px}
   table.cmp th{font-size:10.5px;padding:6px}
   table.cmp td{padding:7px 6px}
 }
+.mod-acc{margin:8px 0;border:1px solid #dbe4f2;border-radius:12px;background:#fff;overflow:hidden}
+.mod-acc summary{list-style:none;cursor:pointer;padding:10px 12px;display:flex;align-items:center;justify-content:space-between;gap:8px;
+  font-size:13px;font-weight:800;color:#12233d;background:#f7faff;user-select:none}
+.mod-acc summary::-webkit-details-marker{display:none}
+.mod-acc summary .m-left{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.mod-acc summary .m-duum{font-size:11.5px;font-weight:800;color:#0369a1;background:#e0f2fe;padding:2px 7px;border-radius:999px}
+.mod-acc summary .m-arr{font-size:12px;color:#64748b;transition:transform .16s}
+.mod-acc[open] summary{border-bottom:1px solid #dbe4f2}
+.mod-acc[open] summary .m-arr{transform:rotate(90deg)}
+.mod-acc .mod-body{padding:8px}
+.mod-acc .tblwrap{margin:0}
 
 code{font-family:var(--mono);font-size:.87em;background:#eef3fa;color:#0b4a8f;padding:1.5px 5px;
   border-radius:5px;border:1px solid #e0e9f6;word-break:keep-all}
@@ -1366,21 +1377,106 @@ function gubunHTML(){
     + '<tr><td><b>DB·성능·인덱스</b></td><td>구조/원리 · 처리방식 · 정합성/동시성 · 장단점 · 튜닝</td></tr>'
     + '<tr><td><b>프로세스·PM</b></td><td>목적 · 입력(Input) · 활동/기법 · 산출물 · 관리지표(KPI)</td></tr>'
     + '</tbody></table></div></section>'
-    + '<section><h3>🔥 나만의 비교모듈 (부모·큰 분야별 표 첫줄 + 두음)</h3>'
-    + '<div class="prose"><p>큰 주제(부모 토픽) 아래 세부 비교 문제가 나오면 아래 <b>전용 6행 모듈</b>을 표 첫 열에 그대로 깔고 오른쪽 칸만 채운다.</p></div>'
-    + '<div class="tblwrap"><table><thead><tr><th>큰 분야 · 대표 주제</th><th>두음 · 표 첫줄 구분자 (6행)</th></tr></thead><tbody>'
-    + '<tr><td><b>블록체인</b><br><small>퍼블릭·프라이빗·컨소시엄</small></td><td><b>확·투·탈·주·알·거</b><br>확장성 · 투명성 · 탈중앙성 · 주체(참여) · 합의알고리즘 · 거버넌스</td></tr>'
-    + '<tr><td><b>클라우드 · 인프라</b><br><small>IaaS·PaaS·SaaS / 멀티·하이브리드</small></td><td><b>제·책·비·확·보·이</b><br>제어권 · 책임공유 · 비용(CapEx/OpEx) · 확장성 · 보안/규제 · 이식성(Lock-in)</td></tr>'
-    + '<tr><td><b>네트워크 · 프로토콜</b><br><small>TCP/UDP · HTTP2/3 · SDN/NFV</small></td><td><b>계·연·속·신·보·용</b><br>계층(OSI) · 연결방식 · 속도/지연 · 신뢰성/흐름 · 보안(암호) · 적용용도</td></tr>'
-    + '<tr><td><b>보안 · 인증 · 암호</b><br><small>대칭/비대칭 · OAuth/OIDC · SIEM/XDR</small></td><td><b>목·대·방·키·성·위</b><br>보안목적 · 보호대상 · 인증/암호방식 · 키/토큰관리 · 성능/부하 · 위협/대응</td></tr>'
-    + '<tr><td><b>DB · 스토리지</b><br><small>B-Tree/LSM · RDB/NoSQL · 블록/파일/오브젝트</small></td><td><b>구·정·성·동·확·용</b><br>저장구조 · 정합성(ACID) · 읽기/쓰기성능 · 동시성제어 · 확장방식 · 적합용도</td></tr>'
-    + '<tr><td><b>CA · OS</b><br><small>프로세스/스레드 · 캐시/가상메모리</small></td><td><b>단·자·속·오·동·교</b><br>실행단위 · 자원공유 · 접근속도 · 오버헤드 · 동기화/일관성 · 교체/해저드</td></tr>'
-    + '<tr><td><b>SW공학</b><br><small>SDLC · 요구·설계 · 테스트 · 품질</small></td><td><b>목·대·기·산·검·장·단</b><br>적용목적 · 대상/범위 · 핵심기법 · 주요산출물 · 검증/품질 · 장점 · 단점</td></tr>'
-    + '<tr><td><b>SW아키텍처 · MSA · API</b><br><small>모놀리식/MSA · REST/GraphQL/gRPC</small></td><td><b>결·통·데·장·배·복</b><br>결합도/경계 · 통신방식 · 데이터정합성 · 장애격리 · 배포전략 · 복잡도/운영</td></tr>'
-    + '<tr><td><b>AI · LLM · RAG</b><br><small>파인튜닝/RAG · sLLM/LLM · 연합학습</small></td><td><b>목·데·최·비·보·환</b><br>적용목적 · 데이터요구 · 최신성반영 · 학습/추론비용 · 보안/프라이버시 · 환각/신뢰성</td></tr>'
-    + '<tr><td><b>정보전략 · 거버넌스 · 법</b><br><small>ISP/ISMP/EA · 패브릭/메시 · AI기본법</small></td><td><b>범·목·주·표·산·거</b><br>대상범위 · 수립목적 · 추진주체 · 근거표준/법 · 핵심산출물 · 거버넌스/환류</td></tr>'
-    + '<tr><td><b>프로젝트 관리 (PM)</b><br><small>애자일/폭포수 · CPM/PERT · FP/LOC</small></td><td><b>일·범·비·변·산·지</b><br>일정/주기 · 범위고정 · 비용/추정 · 변경대응 · 핵심산출물 · 관리지표(KPI)</td></tr>'
-    + '</tbody></table></div></section>';
+    + '<section><h3>🔥 나만의 비교모듈 (큰 분야별 접기/펼치기 + 예시)</h3>'
+    + '<div class="prose"><p>큰 분야를 탭해서 펼치면 <b>표 첫 줄 구분자(두음)</b>와 <b>실전 답안 예시</b>가 바로 나온다. (전부 펼치거나 하나씩 확인)</p></div>'
+    + modAcc('블록체인', '확·투·탈·주·알·거', '구분', '퍼블릭 (Public)', '프라이빗 (Private)', [
+      ['확장성', '낮음 (전체 노드 검증)', '높음 (소수 인가 노드)'],
+      ['투명성', '완전 공개 (누구나 열람)', '제한적 (인가자만 열람)'],
+      ['탈중앙성', '완전 탈중앙화', '중앙 관리 주체 존재'],
+      ['주체(참여)', '비허가형 (누구나 참여)', '허가형 (승인된 노드만)'],
+      ['합의알고리즘', 'PoW, PoS (확률적)', 'PBFT, Raft (결정적)'],
+      ['거버넌스', '커뮤니티·오프체인 합의', '단일 기관·컨소시엄 정책']
+    ])
+    + modAcc('클라우드 · 인프라', '제·책·비·확·보·이', '구분', '온프레미스 (On-Premise)', '클라우드 (Cloud)', [
+      ['제어권', '인프라·OS·앱 전 계층 제어', '서비스 모델별 위임 (IaaS/PaaS/SaaS)'],
+      ['책임공유', '자체 전담 (물리~데이터)', 'CSP와 공동 책임 모델'],
+      ['비용(CapEx/OpEx)', '초기 투자(CapEx) 큼', '종량제 운영비(OpEx) 중심'],
+      ['확장성', '증설 리드타임 김 (수주)', '탄력적 즉시 확장 (Auto Scaling)'],
+      ['보안·규제', '물리적 통제·망분리 용이', '클라우드 보안인증(CSAP)·암호화'],
+      ['이식성(Lock-in)', '자체 표준 (종속 없음)', '벤더 종속 주의 (멀티/IaC 대응)']
+    ])
+    + modAcc('네트워크 · 프로토콜', '계·연·속·신·보·용', '구분', 'TCP', 'UDP', [
+      ['계층(OSI)', '전송 계층 (L4)', '전송 계층 (L4)'],
+      ['연결방식', '연결 지향 (3-Way Handshake)', '비연결 지향 (핸드셰이크 없음)'],
+      ['속도·지연', '상대적으로 느림 (헤더 20B+)', '빠름·저지연 (헤더 8B)'],
+      ['신뢰성·흐름', '재전송·흐름/혼잡제어 보장', '보장 안 함 (Best-Effort)'],
+      ['보안(암호)', 'TLS 결합 (HTTPS/DoT)', 'DTLS 결합 (QUIC/WebRTC)'],
+      ['적용용도', '웹·파일전송·이메일', '실시간 스트리밍·VoIP·DNS']
+    ])
+    + modAcc('보안 · 인증 · 암호', '목·대·방·키·성·위', '구분', '대칭키 암호 (AES)', '비대칭키 암호 (RSA/ECC)', [
+      ['보안목적', '기밀성 (대용량 고속 암호화)', '키 교환 · 전자서명(무결/부인방지)'],
+      ['보호대상', '전송/저장 데이터 본문', '세션키 · 해시 다이제스트'],
+      ['인증·암호방식', '단일 비밀키 암·복호화', '공개키 암호화 / 개인키 복호·서명'],
+      ['키·토큰관리', '키 배송 문제 (KMS/디피헬만)', '공개키 인증서 (PKI/CA) 필요'],
+      ['성능·부하', '연산 빠름 (대용량 적합)', '연산 느림 (대칭키 대비 고부하)'],
+      ['위협·대응', '키 유출 위험 → 주기적 키 순환', '양자컴 위협 → PQC(양자내성) 전환']
+    ])
+    + modAcc('DB · 스토리지', '구·정·성·동·확·용', '구분', 'RDB (관계형)', 'NoSQL (비관계형)', [
+      ['저장구조', '고정 스키마 · 테이블(행/열)', '스키마리스 · Key-Value/Document'],
+      ['정합성(ACID)', 'ACID (강한 일관성)', 'BASE (최종 일관성)'],
+      ['읽기/쓰기성능', '복잡 조인 강점 · 대량 쓰기 한계', '단순 조회·대용량 쓰기 고속'],
+      ['동시성제어', 'Lock · MVCC · 격리수준', '낙관적 락 · 분산 합의(Quorum)'],
+      ['확장방식', '수직 확장(Scale-Up) 중심', '수평 확장(Scale-Out · 샤딩) 용이'],
+      ['적합용도', '금융·결제·ERP 트랜잭션', '로그·세션·실시간 피드·카탈로그']
+    ])
+    + modAcc('CA · OS', '단·자·속·오·동·교', '구분', '프로세스 (Process)', '스레드 (Thread)', [
+      ['실행단위', 'OS 자원 할당의 독립 단위', 'CPU 스케줄링의 실행 단위'],
+      ['자원공유', '독립 메모리 (Code/Data/Heap/Stack)', 'Code/Data/Heap 공유 (Stack만 독립)'],
+      ['접근속도', 'IPC(파이프·소켓) 필요 · 느림', '공유 메모리 직접 접근 · 빠름'],
+      ['오버헤드', '컨텍스트 스위칭 비용 큼 (TLB 플러시)', '스위칭 비용 작음 (레지스터만 교체)'],
+      ['동기화·일관성', '메모리 격리로 충돌 적음', '임계영역 Mutex·Semaphore 필수'],
+      ['교체·해저드', '장애 시 다른 프로세스 영향 없음', '스레드 오류 시 프로세스 전체 종료']
+    ])
+    + modAcc('SW공학', '목·대·기·산·검·장·단', '구분', '화이트박스 테스트', '블랙박스 테스트', [
+      ['적용목적', '내부 논리·소스코드 경로 검증', '외부 요구사항·기능 동작 검증'],
+      ['대상·범위', '소스코드·제어흐름·분기문', '요구사항 명세서·입출력 인터페이스'],
+      ['핵심기법', '문장/분기/조건 커버리지·경로 검증', '동등분할·경계값분석·상태전이'],
+      ['주요산출물', '제어흐름그래프(CFG)·커버리지 리포트', '테스트 케이스(TC)·결함 리포트'],
+      ['검증·품질', '구조적 결함·데드코드·보안취약점', '기능 정확성·누락 기능·예외 처리'],
+      ['장점', '내부 논리 오류 정밀 탐지 가능', '구현 몰라도 사용자 관점 테스트 가능'],
+      ['단점', '코드 이해 필요 · 누락 요구 미탐지', '내부 중복·미실행 경로 검증 불가']
+    ])
+    + modAcc('SW아키텍처 · MSA · API', '결·통·데·장·배·복', '구분', '모놀리식 (Monolithic)', '마이크로서비스 (MSA)', [
+      ['결합도·경계', '강결합 · 단일 코드베이스', '느슨한 결합 · 도메인별 독립(DDD)'],
+      ['통신방식', '인프로세스 함수 직접 호출', 'REST · gRPC · 이벤트 브로커(Kafka)'],
+      ['데이터정합성', '단일 DB 로컬 ACID 트랜잭션', 'DB per Service · Saga(결과적 일관성)'],
+      ['장애격리', '일부 모듈 장애 시 전체 다운', '서킷 브레이커로 장애 전파 차단'],
+      ['배포전략', '전체 일괄 빌드·배포 (주기 김)', '서비스별 독립 CI/CD (카나리·블루그린)'],
+      ['복잡도·운영', '초기 개발·디버깅 단순', '분산 추적·API GW·오케스트레이션 필요']
+    ])
+    + modAcc('AI · LLM · RAG', '목·데·최·비·보·환', '구분', '파인튜닝 (Fine-Tuning)', 'RAG (검색 증강 생성)', [
+      ['적용목적', '도메인 말투·형식·추론 패턴 내재화', '외부 최신·사내 지식 기반 정확한 답변'],
+      ['데이터요구', '정제된 고품질 학습 데이터셋 대량 필요', '문서 청킹 + 임베딩 벡터 DB 구축'],
+      ['최신성반영', '재학습 필요 (실시간 반영 어려움)', '벡터 DB 색인 갱신만으로 즉시 반영'],
+      ['학습·추론비용', 'GPU 학습 비용 매우 높음', '학습 불필요 · 검색/프롬프트 비용만 발생'],
+      ['보안·프라이버시', '모델 가중치에 지식 각인 (접근통제 난해)', '문서 권한별 검색 필터링(RBAC) 용이'],
+      ['환각·신뢰성', '학습 외 지식 환각 위험 상존', '출처(Citation) 근거 제시로 환각 최소화']
+    ])
+    + modAcc('정보전략 · 거버넌스 · 법', '범·목·주·표·산·거', '구분', 'ISP (정보화전략계획)', 'ISMP (SW사업 상세기획)', [
+      ['대상범위', '전사 중장기 정보화 비전·전략', '특정 단위 구축사업 상세 범위·요구'],
+      ['수립목적', '비즈니스-IT 정렬 · 로드맵 수립', '발주 전 과업 명확화 · 적정 예산 산정'],
+      ['추진주체', 'CIO·전사 기획팀 + 전략 컨설팅', '사업 발주부서·PMO + 전문 기획사'],
+      ['근거표준·법', '전자정부법 · EA(정보기술아키텍처)', '소프트웨어 진흥법 · 기능점수(FP)'],
+      ['핵심산출물', 'As-Is/To-Be 모델 · 이행과제·ROI', '상세 RFP · 제안요청서 · WBS/예산서'],
+      ['거버넌스·환류', 'EA 현행화 · IT 투자성과 관리', '과업심의위원회 · 변경관리 기준선']
+    ])
+    + modAcc('프로젝트 관리 (PM)', '일·범·비·변·산·지', '구분', '폭포수 (Waterfall)', '애자일 (Agile · Scrum)', [
+      ['일정·주기', '순차적 단계(계획→설계→구현→시험)', '짧은 반복 주기(1~4주 스프린트)'],
+      ['범위고정', '초기 WBS·요구사항 엄격 고정', '우선순위 백로그 기반 점진적 조정'],
+      ['비용·추정', '초기 총예산·M/M 확정 (고정가 계약)', '스프린트 단위 가용 역량·속도 추정'],
+      ['변경대응', 'CCB 심의 통한 통제 (변경 비용 큼)', '매 스프린트 피드백으로 유연 수용'],
+      ['핵심산출물', '요구사항명세·설계서·감리산출물', '프로덕트 백로그·동작하는 SW 증분'],
+      ['관리지표(KPI)', 'EVM (SPI·CPI) · 일정 준수율', '벨로시티(Velocity) · 번다운 차트']
+    ])
+    + '</section>';
+}
+function modAcc(title, duum, c0, c1, c2, rows){
+  var h = '<details class="mod-acc"><summary><span class="m-left"><span>' + esc(title) + '</span><span class="m-duum">' + esc(duum) + '</span></span><span class="m-arr">▸</span></summary>'
+    + '<div class="mod-body"><div class="tblwrap"><table class="cmp"><thead><tr><th style="width:24%">' + esc(c0) + '</th><th style="width:38%">' + esc(c1) + '</th><th style="width:38%">' + esc(c2) + '</th></tr></thead><tbody>';
+  rows.forEach(function(r){
+    h += '<tr><td><b>' + esc(r[0]) + '</b></td><td>' + esc(r[1]) + '</td><td>' + esc(r[2]) + '</td></tr>';
+  });
+  return h + '</tbody></table></div></div></details>';
 }
 function para3HTML(){
   return '<section><h3>1교시 3단락 마무리 공식 (두음: 고·활·기·대·발)</h3>'
