@@ -190,7 +190,7 @@ body.has-sel .node:not(.sel):not(.rel){opacity:.33}
 .sheet{position:fixed;inset:0;z-index:60;display:flex;flex-direction:column;justify-content:flex-end}
 .sheet[hidden]{display:none}
 .sheet-bg{position:absolute;inset:0;background:rgba(8,13,24,.45);opacity:0;transition:opacity .24s}
-.sheet-panel{position:relative;background:#fff;border-radius:20px 20px 0 0;display:flex;flex-direction:column;
+.sheet-panel{position:relative;background:#fff;border-radius:20px 20px 0 0;display:flex;flex-direction:column;overflow:hidden;
   max-height:92vh;max-height:92dvh;transform:translateY(102%);
   transition:transform .3s cubic-bezier(.2,.85,.2,1);box-shadow:0 -10px 40px rgba(8,13,24,.26)}
 #sheet.open .sheet-bg,#guide.open .sheet-bg{opacity:1}
@@ -212,8 +212,8 @@ body.has-sel .node:not(.sel):not(.rel){opacity:.33}
 .p2-box{background:#f8faff;border:1px solid #e2eaf6;border-radius:12px;padding:11px 13px;margin-bottom:10px}
 .p2-box h4{margin:0 0 6px;font-size:13px;font-weight:800;color:var(--c)}
 .p2-sub{font-size:12.5px;font-weight:800;color:#13253f;margin:10px 0 6px}
-.sheet-body{overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;
-  padding:2px 16px calc(22px + var(--safe-b));word-break:keep-all;overflow-wrap:break-word}
+.sheet-body{flex:1 1 auto;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;
+  padding:2px 16px calc(56px + var(--safe-b));word-break:keep-all;overflow-wrap:break-word}
 .sheet-body section{padding:13px 0;border-bottom:1px solid #eff3f9}
 .sheet-body section:last-child{border-bottom:0}
 .sheet-body h3{display:flex;align-items:center;gap:6px;margin:0 0 9px;font-size:12px;font-weight:800;
